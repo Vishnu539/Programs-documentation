@@ -1,0 +1,55 @@
+The program that we are solving today is TwoSum problem from Leetcode. It is an easy level beginner friendly problem and very popular choice too.
+
+Program link:
+
+https://leetcode.com/problems/two-sum
+
+From the given description of the problem, we can get few things out of out way.
+    1. The array is unsorted.
+    2. We can use linear search or HashMap to solve this problem.
+    3. Check for any constraints mentioned in the description and solve the problem accordingly.
+
+Problem solving steps:
+
+  1. First we create a method called twoSum() that takes the array and the target element as parameters.
+  2. Take a for loop to traverse through the array.
+  3. To check for the target element, we have to add two elements in the array. These two elements are either consecutive or not
+  4. Take two loops i and j for traversal.
+  5. We should take j as an incremented value to i. That means when the value of i is 0, then j will be 1 and when i is 1, j will be 2.
+  6. These loops must run utill last element of the array (nums.length - 1 for i and nums.length for j).
+  7. Add these two array indices (i and j will be the index values) and check if they add up to the target element.
+  8. If they do, return the values of i and j as indices of the array (reutrn new int[] {i,j}).
+  9. If not, simply return -1 as both indices of the array.
+
+Program:
+
+  public int[] twoSum(int[] nums, int target){
+        for(int i = 0; i < nums.length - 1; i++){
+            for(int j = i + 1; j < nums.length; j++){
+
+                //Adding the values in the indeices i and j and check if they add up to the target
+                if(nums[i] + nums[j] == target){
+                    return new int[] {i,j};
+                }
+            }
+        }
+        
+        return new int[] {-1,-1};  //When no answer has been found.
+    }
+
+
+Dry run:
+
+Sample array: [2,7,11,15]
+Target element: 9
+
+  1. i = 0; i < nums.length -1 (True)
+  2. j = i + 1 = 1; j < nums.length (True)
+  3. nums[i] + nums[j] == target
+     nums[0] + nums[1] == target
+     2 + 7 == 9
+     9 == 9 (True)
+  4. Break out of the loop and return i and j values.
+
+Expeceted output: [0,1]
+Actual output: [0,1]
