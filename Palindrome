@@ -1,0 +1,65 @@
+Given an integer x, return true if x is a palindrome, and false otherwise.
+
+Program link: https://leetcode.com/problems/palindrome-number/description
+
+A number is said to be a Palindrome number if, when the number is reversed (written in reverse order), we get the same number. For example, the reverse of the number 101 is 101 itself. Hence, it is a Palindrome number.
+We can check whether a number is Palindrome or not using few simple steps. If the input number is Palindrome, we should return true and return false otherwise.
+
+Problem solving steps:
+1. There are three input cases
+    a. The number is a negative ( num < 0). false should be returned.
+    b. The number is a multiple of 10 (num % 10 == 0) and not equal to 0 (num != 0). false should be returned.
+    c. All the numbers that do not come under above two cases should be checked for Palindrome feature.
+
+2. Take a while loop. Repeat it utill the number equals to or less than 0.
+
+3. Calculate the reaminder of the number (num % 10 == 0) to get the last digit and store this in a new variable "remainder".
+
+4. Take a variable to store the result and initialize it to 0.
+
+5. Multiply this result variable and add the last digit that is stored in remainder variable.
+
+6. Finally remove the last digit of the input number by dividing the number with 10 (num = num / 10).
+
+7. After the while loop breaks, check the result with the input number.If equals, return true.
+
+
+Program:
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x < 0 || (x % 10 == 0 && x != 0)) // x is greater than 0 and multiple of 10
+            return false;
+
+        int temp = x; // Storing the input number in a temporary variable
+        int reverse = 0; // Initializing the result variable to 0
+
+        while(x > 0){   // repeating the loop till the input number is less than or equals to zero
+            int remainder = x % 10;   //For getting the last digit of the input number
+            reverse = reverse * 10 + remainder;   //Adding the last digit into the result variable
+            x = x / 10;   // Reduce the input number by 1 digit (last digit)
+        }
+
+        if(reverse == temp)
+            return true;
+
+        return false;
+    }
+}
+
+For the input number 121,
+Expected output: true
+Actual output: ture
+
+Time Complexity:
+
+The dominant loop iterates through the digits of the number, which happens as many times as the number of digits (n).
+This loop involves constant time operations like modulo and division.
+Therefore, the time complexity is O(n).
+
+
+Space Complexity:
+
+The program uses three additional variables: temp, reverse, and a temporary variable for the remainder in the loop.
+These variables hold constant size data (integers).
+Therefore, the space complexity is also O(1).
