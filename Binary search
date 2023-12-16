@@ -1,0 +1,69 @@
+Leetcode problem number 704, Binary search.
+
+Problem link: https://leetcode.com/problems/binary-search/description
+
+Binary search ia one of the popularly used searching techniques. In binary search, the array is, by default, sorted (either in ascending or descending order). It is used to search for a terget element in the array of elements. We take the start and ending values in the array and calculate the mid value for
+by taking the average of starting and ending values. This mid value is used to check for the conditions of binary search.
+
+There are three condition that can be checked for binary search
+1. The target element is equal to the middle element.
+2. The target element is less than the middle element.
+3. The target element is greater than the middle element.
+
+Case 1:
+  When the target element is equal to the middle element, we simply return the index of the middle element.
+    return mid;
+
+Case 2:
+  When the target element is less than the middle element, it means that all the elements that are greater than the middle element must be greater than the target element (since the array in binary search is sorted).
+  So we can move the end value to the index just before the middle index.
+    end = mid - 1;
+
+Case 3:
+  When the target element is greater than the middle element, it means that all the elements that are less than the middle element are less than the target element.So we can move the start index to the index that comes
+  right after the middle index.
+    start = mid + 1;
+
+Case 4: 
+  There is one more case. If the target element is not present in the given array, we simply return -1 as the index of the target element in the array (Since it does not exists).
+
+All these test cases are runned inside a while loop. This loop will repeat as long as the start element is less than or equals to the end element. The values of start and end will be updated after each check till the
+loop breaks.
+
+Program:
+
+class Solution {
+    public int search(int[] nums, int target) {
+
+        //Intialize start value to 0
+        int start = 0;
+
+        // To find the value of last element in the, we can use the length of the array method
+        int end = nums.length - 1;
+
+        while(start <= end){
+
+            // Calculating mid value using start and end values
+            int mid = ((start + end) / 2);
+
+            if(target < nums[mid]){
+                end = mid - 1;
+            }else if(target > nums[mid]){
+                start =  mid + 1;
+            }else{
+                 return mid;
+            }
+        }
+
+        return -1;    
+    }
+}
+
+for the inputs,
+nums = [-1,0,3,5,9,12]
+target = 9
+
+Expected output: 4
+Actual output: 4
+
+The time complexity for Binary search is O(log n) as it take (log n) steps to find the target element and the space complexity is O(1) as we are not taking up any new additional space.
